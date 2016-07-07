@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<context id="testTables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+		<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+			connectionURL="jdbc:oracle:thin:@172.16.176.128:1521:Myorcl" userId="sa"
+			password="sa">
+		</jdbcConnection>
+		<!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver"
+			connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:yycg" 
+			userId="yycg"
+			password="yycg">
+		</jdbcConnection> -->
+
+		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和 
+			NUMERIC 类型解析为java.math.BigDecimal -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- targetProject:生成PO类的位置 -->
+		<javaModelGenerator targetPackage="dbi.bjbank.core.bean"
+			targetProject="src">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+			<!-- 从数据库返回的值被清理前后的空格 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+        <!-- targetProject:mapper映射文件生成的位置 -->
+		<sqlMapGenerator targetPackage="dbi.bjbank.core.dao" 
+			targetProject="src">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+		<!-- targetPackage：mapper接口生成的位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="dbi.bjbank.core.dao" 
+			targetProject="src">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+		
+		<javaIServiceGenerator type="XMLMAPPER"
+			targetPackage="dbi.bjbank.core.service" 
+			targetProject="src">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</javaIServiceGenerator>
+
+		<javaServiceImplGenerator type="XMLMAPPER"
+			targetPackage="dbi.bjbank.core.service.impl" 
+			targetProject="src">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</javaServiceImplGenerator>
+		
+		<javaActionGenerator type="XMLMAPPER"
+			targetPackage="dbi.bjbank.core.action" 
+			targetProject="src">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</javaActionGenerator>
+		
+		<!-- <table schema="sa" tableName="TBL_RESOURCE" domainObjectName="Resource">
+			<property name="useActualColumnNames" value="false"/>
+			<generatedKey column="RESOURCE_ID" sqlStatement="select SEQ_TBL_USER.NEXTVAL from dual"/>
+		</table> -->
+		<table schema="sa" tableName="TBL_USER" domainObjectName="User">
+			<property name="useActualColumnNames" value="false"/>
+		</table>
+		
+		<!-- <table schema="sa" tableName="T_CUSTOMER" domainObjectName="Customer">
+			<property name="useActualColumnNames" value="false"/>
+			<generatedKey column="ID" sqlStatement="select topic_s.NEXTVAL from dual"/>
+		</table> -->
+		
+		<!-- 有些表的字段需要指定java类型
+		 <table schema="" tableName="">
+			<columnOverride column="" javaType="" />
+		</table> -->
+	</context>
+</generatorConfiguration>
